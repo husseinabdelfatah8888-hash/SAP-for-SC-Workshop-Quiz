@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAP for Supply Chain: Workshop Knowledge Check</title>
+<meta name="description" content="An interactive 20-question knowledge check for the SAP for Supply Chain workshop, covering planning, production, purchasing and inventory.">
+<meta name="theme-color" content="#12294D">
+<meta property="og:title" content="SAP for Supply Chain: Workshop Knowledge Check">
+<meta property="og:description" content="Test your knowledge across four workshop sessions: planning, production, purchasing and inventory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F4F8; --surface:#FFFFFF; --ink:#12294D; --text:#26334A; --muted:#5B677C; --line:#D3DAE5;
+  --ok:#1F7A4A; --ok-bg:#E4F3EA; --bad:#A3282A; --bad-bg:#F8E6E6;
+  --c1:#2F6DB5; --c2:#D9780F; --c3:#2E8B4E; --c4:#7B4FA0; --c5:#17808A;
+  --display:'Bricolage Grotesque','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Sans 3','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1626; --surface:#17223A; --ink:#EAF0FA; --text:#C9D3E4; --muted:#93A1BA; --line:#2C3A58;
+    --ok:#6FD39B; --ok-bg:#15352A; --bad:#FF8F8F; --bad-bg:#3A1D22;
+    --c1:#6FA6EC; --c2:#F2A04A; --c3:#5CC27F; --c4:#B793DB; --c5:#4FC1CB;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1626; --surface:#17223A; --ink:#EAF0FA; --text:#C9D3E4; --muted:#93A1BA; --line:#2C3A58;
+  --ok:#6FD39B; --ok-bg:#15352A; --bad:#FF8F8F; --bad-bg:#3A1D22;
+  --c1:#6FA6EC; --c2:#F2A04A; --c3:#5CC27F; --c4:#B793DB; --c5:#4FC1CB;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:18px;line-height:1.5;-webkit-text-size-adjust:100%;}
+main{max-width:700px;margin:0 auto;padding:28px 20px 56px;}
+h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;font-weight:700;letter-spacing:-0.01em;}
+h1{font-size:clamp(30px,7vw,44px);line-height:1.08;}
+h2{font-size:clamp(23px,5vw,29px);line-height:1.18;}
+p{margin:0;}
+.lede{margin-top:16px;font-size:19px;max-width:34em;}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;background:color-mix(in srgb,var(--ink) 9%,transparent);padding:1px 5px;border-radius:4px;color:var(--ink);}
+.hidden{display:none !important;}
+
+/* stage bar: the one memorable element */
+.bar{display:flex;gap:4px;margin:26px 0 8px;}
+.seg{flex:1;height:14px;border-radius:3px;border:2px solid var(--line);background:transparent;transition:background .25s,border-color .25s;}
+.seg.cur{border-color:var(--sc);}
+.seg.ok{background:var(--sc);border-color:var(--sc);}
+.seg.bad{border-color:var(--sc);background:repeating-linear-gradient(135deg,var(--sc) 0 3px,transparent 3px 6px);}
+.legend{display:flex;font-size:13.5px;color:var(--muted);gap:4px;}
+.legend span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.btn{font:600 18px/1 var(--body);border:0;border-radius:10px;padding:16px 24px;min-height:52px;cursor:pointer;background:var(--ink);color:var(--bg);}
+.btn:hover{filter:brightness(1.12);}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);}
+:focus-visible{outline:3px solid var(--c1);outline-offset:3px;}
+.start-actions{margin-top:28px;}
+.fine{margin-top:14px;font-size:15px;color:var(--muted);}
+
+.tag{display:inline-block;font-weight:600;font-size:15px;padding:3px 10px;border-radius:999px;border:2px solid var(--sc);color:var(--ink);}
+.qhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:16px;}
+.qtext{margin-top:12px;}
+.opts{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px;}
+.opt{width:100%;text-align:left;display:flex;gap:14px;align-items:flex-start;font:400 18px/1.4 var(--body);color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:14px 16px;min-height:56px;cursor:pointer;}
+.opt:hover:not(:disabled){border-color:var(--ink);}
+.opt .k{flex:0 0 auto;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:600;font-size:15px;color:var(--muted);margin-top:1px;}
+.opt:disabled{cursor:default;}
+.opt.right{border-color:var(--ok);background:var(--ok-bg);}
+.opt.right .k{background:var(--ok);border-color:var(--ok);color:var(--surface);}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg);}
+.opt.wrong .k{background:var(--bad);border-color:var(--bad);color:var(--surface);}
+.opt.dim{opacity:.65;}
+.fb{margin-top:18px;padding:16px 18px;border-radius:12px;background:var(--surface);border-left:6px solid var(--sc);}
+.fb strong{font-family:var(--display);font-size:20px;color:var(--ink);display:block;margin-bottom:4px;}
+.fb .src{margin-top:8px;font-size:15px;color:var(--muted);}
+.next{margin-top:18px;}
+
+/* result */
+.score{display:flex;align-items:baseline;gap:10px;margin-top:20px;font-family:var(--display);color:var(--ink);}
+.score .n{font-size:clamp(76px,22vw,120px);line-height:.95;font-weight:700;}
+.score .of{font-size:clamp(28px,7vw,40px);color:var(--muted);font-weight:500;}
+.who{margin-top:6px;font-size:18px;color:var(--muted);}
+.verdict{margin-top:10px;font-size:20px;color:var(--ink);max-width:28em;}
+.stages{margin-top:28px;display:grid;gap:12px;}
+.stage{display:grid;grid-template-columns:130px 1fr 44px;align-items:center;gap:12px;font-size:17px;}
+.stage .meter{display:flex;gap:3px;}
+.stage .meter i{flex:1;height:10px;border-radius:2px;border:2px solid var(--sc);}
+.stage .meter i.f{background:var(--sc);}
+.stage .v{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;}
+.revisit{margin-top:22px;padding:16px 18px;border-radius:12px;background:var(--surface);border-left:6px solid var(--sc);}
+.review{margin-top:34px;}
+.rev-item{margin-top:14px;padding:16px 18px;background:var(--surface);border:2px solid var(--line);border-radius:12px;}
+.rev-item h3{font-size:19px;line-height:1.3;}
+.rev-item .a{margin-top:10px;font-size:16.5px;}
+.rev-item .a b{color:var(--ink);}
+.yours{color:var(--bad);}
+.theirs{color:var(--ok);}
+.field{margin-top:26px;max-width:420px;}
+.field label{display:block;font-weight:600;color:var(--ink);margin-bottom:6px;font-size:17px;}
+.field input{width:100%;font:400 18px/1.3 var(--body);color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:13px 14px;min-height:52px;}
+.field input:focus-visible{border-color:var(--c1);outline-offset:1px;}
+.err{margin-top:8px;color:var(--bad);font-size:16px;}
+.owner{margin-top:26px;padding-top:18px;border-top:2px solid var(--line);}
+.owner p{font-size:15px;color:var(--muted);margin-bottom:10px;}
+.save{margin-top:14px;font-size:16.5px;color:var(--muted);}
+.save.good{color:var(--ok);}
+.copybox{margin-top:12px;max-width:560px;}
+.copybox textarea{width:100%;font:400 16px/1.4 var(--body);color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical;margin-bottom:10px;}
+.sum{margin-top:12px;font-size:18px;color:var(--ink);}
+.tablewrap{margin-top:16px;overflow-x:auto;border:2px solid var(--line);border-radius:12px;background:var(--surface);}
+table.res{border-collapse:collapse;width:100%;min-width:560px;font-size:16px;}
+table.res th,table.res td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+table.res th{color:var(--ink);font-weight:600;white-space:nowrap;}
+table.res td.num,table.res th.num{text-align:right;font-variant-numeric:tabular-nums;}
+table.res tr:last-child td{border-bottom:0;}
+.actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;}
+@media (max-width:480px){
+  body{font-size:17px;}
+  .stage{grid-template-columns:104px 1fr 38px;font-size:16px;}
+  .legend{font-size:12px;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+
+:root{--s1:var(--c1);--s2:var(--c3);--s3:var(--c4);--s4:var(--c5);}
+.picker{margin-top:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:520px;}
+.pick{font:600 16px/1.25 var(--body);text-align:left;color:var(--ink);background:var(--surface);border:2px solid var(--line);border-left:6px solid var(--sc);border-radius:10px;padding:12px 14px;cursor:pointer;min-height:54px;}
+.pick small{display:block;font-weight:400;color:var(--muted);font-size:14px;margin-top:2px;}
+.pick:hover{border-color:var(--ink);border-left-color:var(--sc);}
+.pickhead{margin-top:26px;font-size:15px;color:var(--muted);}
+.refchip{display:inline-block;margin-top:10px;font-weight:600;font-size:15.5px;color:var(--ink);background:color-mix(in srgb,var(--sc) 16%,transparent);border:2px solid var(--sc);border-radius:999px;padding:3px 12px;}
+.fb .ans{margin-top:6px;}
+.fb .ans b{color:var(--ink);}
+.fb.bad{border-left-color:var(--bad);}
+.fb.ok{border-left-color:var(--ok);}
+.sessions{margin-top:26px;display:grid;gap:10px;}
+.srow{display:grid;grid-template-columns:150px 1fr 44px;align-items:center;gap:12px;font-size:17px;}
+.srow .meter{display:flex;gap:3px;}
+.srow .meter i{flex:1;height:12px;border-radius:2px;border:2px solid var(--sc);}
+.srow .meter i.f{background:var(--sc);}
+.srow .v{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;}
+.rev-item .refline{margin-top:10px;}
+.who{margin-top:6px;font-size:18px;color:var(--muted);}
+.copybox{margin-top:12px;max-width:560px;}
+.copybox textarea{width:100%;font:400 16px/1.4 var(--body);color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical;margin-bottom:10px;}
+@media (max-width:480px){.picker{grid-template-columns:1fr;}.srow{grid-template-columns:110px 1fr 38px;font-size:16px;}}
+</style>
+</head>
+<body>
+<main>
+<section id="start">
+  <h1>How well do you know the whole workshop?</h1>
+  <p class="lede">Twenty questions: five from each session, on planning, production, purchasing and inventory. You get a score for every session, and for each miss you see the right answer and the reference page to review.</p>
+  <div class="bar" id="startBar" aria-hidden="true"></div>
+  <div class="legend" id="startLegend" aria-hidden="true"></div>
+  <div class="field">
+    <label for="nameIn">Your name</label>
+    <input id="nameIn" type="text" autocomplete="name" maxlength="60" placeholder="Name as it should appear on your result">
+    <p class="err hidden" id="nameErr" role="alert">Enter your name to start.</p>
+  </div>
+  <div class="start-actions"><button class="btn" id="startAll">Start the full quiz (20 questions)</button></div>
+  <p class="pickhead">Or practise one session (5 questions)</p>
+  <div class="picker" id="picker"></div>
+  <p class="fine">About ten minutes for the full quiz. Answer order changes each attempt. At the end you can screenshot your result or copy it to send to the organizer.</p>
+</section>
+
+<section id="quiz" class="hidden" aria-live="polite">
+  <div class="bar" id="bar"></div>
+  <div class="qhead"><span id="qnum"></span><span class="tag" id="qtag"></span></div>
+  <h2 class="qtext" id="qtext"></h2>
+  <ul class="opts" id="opts"></ul>
+  <div class="fb hidden" id="fb"></div>
+  <div class="next hidden" id="nextWrap"><button class="btn" id="nextBtn">Next question</button></div>
+</section>
+
+<section id="result" class="hidden">
+  <h1 id="resTitle">Your score</h1>
+  <p class="who" id="who"></p>
+  <div class="score"><span class="n" id="scoreN">0</span><span class="of" id="scoreOf">out of 20</span></div>
+  <p class="verdict" id="verdict"></p>
+  <div class="bar" id="resBar" aria-hidden="true"></div>
+  <div class="sessions" id="sessions"></div>
+  <div class="revisit hidden" id="revisit"></div>
+  <div class="copybox">
+    <textarea id="copyTa" rows="3" readonly></textarea>
+    <button class="btn ghost" id="copyBtn">Copy result</button>
+  </div>
+  <div class="review" id="review"></div>
+  <div class="actions"><button class="btn" id="retryBtn">Try again</button><button class="btn ghost" id="homeBtn">Back to start</button></div>
+</section>
+</main>
+
+<script>
+(function(){
+  var SESS=[
+    {id:1,name:'Session 1',topic:'Planning',c:'var(--s1)'},
+    {id:2,name:'Session 2',topic:'Production',c:'var(--s2)'},
+    {id:3,name:'Session 3',topic:'Purchasing',c:'var(--s3)'},
+    {id:4,name:'Session 4',topic:'Inventory',c:'var(--s4)'}
+  ];
+  var Q=[{"s": 1, "q": "Which pair correctly matches each demand type with the SAP object that drives it?", "a": "MTS: a PIR (forecast). MTO: a sales order.", "w": ["MTS: a sales order. MTO: a PIR.", "MTS: a planned order. MTO: a purchase requisition.", "Both are driven by purchase requisitions."], "e": "Make-to-stock is planned from forecasts held as PIRs. Make-to-order is driven by a confirmed customer order, the sales order. PRs and planned orders are MRP outputs, not demand.", "ref": {"page": 18, "slide": "Planning starts with demand", "part": "Part 2: From demand to plan"}}, {"s": 1, "q": "A material has procurement type F. What does MRP create when it finds a shortage?", "a": "A purchase requisition", "w": ["A planned order for production on the plant’s own lines", "A confirmed process order", "A production version"], "e": "Type E means in-house production, so MRP proposes a planned order. Type F means external procurement, so it proposes a purchase requisition.", "ref": {"page": 27, "slide": "Sourcing: make it or buy it", "part": "Part 2: From demand to plan"}}, {"s": 1, "q": "You re-run MRP with planning mode 3 (delete and recreate). Which documents are still never deleted?", "a": "Confirmed ones: purchase orders and process orders", "w": ["Unconfirmed PRs and planned orders", "Sales orders only", "None: everything is recreated"], "e": "Only unconfirmed outputs (PRs and planned orders) are deleted or replaced. Once converted into POs and process orders they belong to execution.", "ref": {"page": 43, "slide": "Planning mode: what gets replaced", "part": "Part 3: MRP in SAP"}}, {"s": 1, "q": "In an MD04 list for an MTO item, what does a PldOrd line represent?", "a": "The planned order SAP created to cover the need", "w": ["The sales order created in SAP", "Stock held for this customer", "A purchase order sent to the supplier"], "e": "CusOrd is the sales order and CustSt is stock held for the customer. PldOrd is the planned order SAP proposes, to be converted into a process or production order.", "ref": {"page": 39, "slide": "MD04: read the requirements list", "part": "Part 3: MRP in SAP"}}, {"s": 1, "q": "Demand is 1,000 cartons, stock is 300, open supply is 200 and safety stock is 100. What shortage does MRP see?", "a": "600 cartons", "w": ["500 cartons", "400 cartons", "700 cartons"], "e": "1,000 − 300 − 200 + 100 = 600. The safety stock is a buffer that must also be covered, so it is added to the requirement.", "ref": {"page": 25, "slide": "How MRP calculates", "part": "Part 2: From demand to plan"}}, {"s": 2, "q": "What makes the BOM and the master recipe visible to a production order?", "a": "The production version (C223)", "w": ["The recipe group number alone", "The material group", "The MRP controller"], "e": "The production version links the BOM and the master recipe. Without an active one, the order sees no components, operations or work center.", "ref": {"page": 72, "slide": "Production version: the link", "part": "Part 1: Master data"}}, {"s": 2, "q": "What does BOM usage 1 mean?", "a": "The BOM is used for production", "w": ["The BOM is used for quality inspection", "The BOM status is active", "The BOM has only one component"], "e": "Usage 1 is the constant that marks a production BOM. Status 1 (active) is a different field in the BOM header.", "ref": {"page": 63, "slide": "BOM: the ingredient list", "part": "Part 1: Master data"}}, {"s": 2, "q": "The base quantity of the master recipe must equal which value?", "a": "The base quantity of the BOM", "w": ["The quantity of the first production order", "The stock on hand", "The batch size of the last order"], "e": "A mismatch between the BOM and recipe base quantities gives wrong calculations when the production order is released.", "ref": {"page": 70, "slide": "Recipe header and base quantity", "part": "Part 1: Master data"}}, {"s": 2, "q": "What does releasing a production order create for its components?", "a": "A reservation", "w": ["A purchase requisition", "A goods receipt", "A material document with movement 101"], "e": "Release checks material availability and creates a reservation that locks the components for this order.", "ref": {"page": 84, "slide": "Material list and release", "part": "Part 2: Order cycle"}}, {"s": 2, "q": "The components were consumed and the order is confirmed. When does the finished product appear as stock?", "a": "After the goods receipt in MIGO (movement 101)", "w": ["As soon as the order is released", "As soon as the order is confirmed", "When the next MRP run finishes"], "e": "Confirmation records consumption and hours. The finished goods only become stock when the goods receipt is posted in MIGO.", "ref": {"page": 87, "slide": "Delivery: goods receipt in MIGO", "part": "Part 2: Order cycle"}}, {"s": 3, "q": "Which combination creates a service purchase requisition?", "a": "Item category D with account assignment K (cost center)", "w": ["Item category L with account assignment A", "A standard item with Returns Item ticked", "Item category D with account assignment A"], "e": "A service has no material and no stock, so its cost goes to a cost center (K). L is subcontracting and A is for assets.", "ref": {"page": 126, "slide": "Service PR (1/3): choose D and K", "part": "Part 2: PR and PO types"}}, {"s": 3, "q": "What does ticking Returns Item on a purchase order do?", "a": "It makes the item a return: the PO carries a negative sign and deducts stock", "w": ["It marks the item as free of charge", "It sends the order to a subcontractor", "It adds a cost center to the item"], "e": "A return is not a new purchase, so the stock movement is reversed. The Free box is the one that makes an item cost zero.", "ref": {"page": 133, "slide": "Return PO and free PO", "part": "Part 2: PR and PO types"}}, {"s": 3, "q": "In a subcontract PR, what does the Components button show?", "a": "The BOM components that are sent to the vendor to make the product", "w": ["The vendor’s own raw materials", "The invoice lines to be paid", "The finished-goods stock at the vendor"], "e": "The components of the BOM travel from the company’s stock to the vendor, who manufactures and returns the product.", "ref": {"page": 118, "slide": "Subcontract (2/3): components", "part": "Part 2: PR and PO types"}}, {"s": 3, "q": "Which report lists everything bought from one supplier, grouped by purchasing document?", "a": "ME2L", "w": ["ME2M", "ME2N", "ME5A"], "e": "ME2L searches by supplier. ME2M searches by material, ME2N by document, and ME5A lists purchase requisitions.", "ref": {"page": 138, "slide": "ME2L: search by supplier", "part": "Part 3: Reports and tracking"}}, {"s": 3, "q": "Reverse tracking starts from the batch in the warehouse. What is the correct order back to the request?", "a": "Batch → GR document → PO → PR", "w": ["PR → PO → GR document → Batch", "Batch → PR → PO → GR document", "GR document → Batch → PR → PO"], "e": "Start from the physical batch, open the GR document, read the PO on its Purchase Order Data tab, then the PR in the PO item.", "ref": {"page": 140, "slide": "Reverse tracking", "part": "Part 3: Reports and tracking"}}, {"s": 4, "q": "A goods receipt was posted by mistake with movement 101. What is the correct fix?", "a": "Reverse it with 102, then post the correct receipt", "w": ["Delete the material document", "Post a consumption with 261", "Overwrite the quantity in the report"], "e": "Movements are never deleted. A reversal keeps the audit trail intact, and the correct posting follows it.", "ref": {"page": 153, "slide": "Never delete: always reverse", "part": "Part 1: The cycle"}}, {"s": 4, "q": "In MMBE, what do the red columns (reservations, scheduled for delivery, returns) represent?", "a": "Movements that are not counted as stock", "w": ["Blocked stock", "Stock waiting for quality inspection", "Stock in other plants"], "e": "Blue columns are actual stock. Red columns are movements, such as reservations by production orders or deliveries not yet made.", "ref": {"page": 162, "slide": "MMBE: blue is stock, red is movement", "part": "Part 2: Reports"}}, {"s": 4, "q": "Which report shows the stock as it was on a past posting date?", "a": "MB5B", "w": ["MB52", "MMBE", "ME2M"], "e": "MB5B takes a date or period. MB52 shows live stock only, and MMBE shows the current overview of one material.", "ref": {"page": 164, "slide": "MB5B: stock on a past date", "part": "Part 2: Reports"}}, {"s": 4, "q": "Why can one MB5B run not show value and storage location together?", "a": "Location and batch selections conflict with valuation, so you pick one view", "w": ["Value is only stored for the current month", "Valuation exists only in MB52", "MB5B supports special stock only"], "e": "Valuated stock gives totals with value but no split by location. Storage loc./batch stock gives locations without value.", "ref": {"page": 165, "slide": "MB5B: value or location?", "part": "Part 2: Reports"}}, {"s": 4, "q": "In the special stock indicator, what does O stand for?", "a": "Stock we own that sits outside our warehouse, at a vendor for subcontracting", "w": ["Stock owned by a customer inside our warehouse", "Stock sent to agents for sale", "Stock on order from a supplier"], "e": "O is owned stock held at an external vendor. E ties stock to a customer, and W is stock at agents awaiting final sale.", "ref": {"page": 166, "slide": "Special stock: O, E and W", "part": "Part 2: Reports"}}];
+  var $=function(id){return document.getElementById(id);};
+  var mode='all', order=[], idx=0, results=[], pname='';
+  function sess(id){return SESS[id-1];}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function show(id){['start','quiz','result'].forEach(function(s){$(s).classList.toggle('hidden',s!==id);});window.scrollTo(0,0);}
+  function drawBar(el,list,stateFn){
+    el.innerHTML='';
+    list.forEach(function(q,i){var d=document.createElement('div');d.className='seg '+(stateFn?(stateFn(i)||''):'');d.style.setProperty('--sc',sess(q.s).c);el.appendChild(d);});
+  }
+  function drawLegend(el,list){
+    el.innerHTML='';
+    SESS.forEach(function(s){var n=list.filter(function(q){return q.s===s.id;}).length;if(!n)return;var sp=document.createElement('span');sp.style.flex=n;sp.textContent=s.name+': '+s.topic;el.appendChild(sp);});
+  }
+  drawBar($('startBar'),Q);drawLegend($('startLegend'),Q);
+  var pk=$('picker');
+  SESS.forEach(function(s){
+    var b=document.createElement('button');b.className='pick';b.type='button';b.style.setProperty('--sc',s.c);
+    b.innerHTML='<span></span><small></small>';b.firstChild.textContent=s.name;b.lastChild.textContent=s.topic+', 5 questions';
+    b.addEventListener('click',function(){begin(s.id);});
+    pk.appendChild(b);
+  });
+  try{var sv=localStorage.getItem('sapwq_name');if(sv)$('nameIn').value=sv;}catch(e){}
+
+  function begin(m){
+    var v=$('nameIn').value.replace(/\s+/g,' ').trim();
+    if(!v){$('nameErr').classList.remove('hidden');$('nameIn').focus();return;}
+    $('nameErr').classList.add('hidden');pname=v;
+    try{localStorage.setItem('sapwq_name',v);}catch(e){}
+    mode=m;order=(m==='all')?Q.slice():Q.filter(function(q){return q.s===m;});
+    idx=0;results=[];show('quiz');render();
+  }
+  $('startAll').addEventListener('click',function(){begin('all');});
+  $('nameIn').addEventListener('keydown',function(e){if(e.key==='Enter')begin('all');});
+
+  function render(){
+    var q=order[idx],s=sess(q.s);
+    drawBar($('bar'),order,function(i){return i<results.length?(results[i].ok?'ok':'bad'):(i===idx?'cur':'');});
+    $('qnum').textContent='Question '+(idx+1)+' of '+order.length;
+    var tag=$('qtag');tag.textContent=s.name+': '+s.topic;tag.style.setProperty('--sc',s.c);
+    $('qtext').textContent=q.q;
+    var fb=$('fb');fb.classList.add('hidden');fb.innerHTML='';
+    $('nextWrap').classList.add('hidden');
+    var opts=shuffle([{t:q.a,ok:true}].concat(q.w.map(function(x){return {t:x,ok:false};})));
+    var ul=$('opts');ul.innerHTML='';
+    opts.forEach(function(o,i){
+      var li=document.createElement('li'),b=document.createElement('button');
+      b.className='opt';b.type='button';b.innerHTML='<span class="k">'+'ABCD'[i]+'</span><span></span>';b.lastChild.textContent=o.t;
+      b.addEventListener('click',function(){choose(o,b,opts);});
+      li.appendChild(b);ul.appendChild(li);
+    });
+  }
+
+  function refText(q){return q.ref.part+', slide “'+q.ref.slide+'”';}
+  function choose(o,btn,opts){
+    var q=order[idx],s=sess(q.s);
+    $('opts').querySelectorAll('.opt').forEach(function(b,i){
+      b.disabled=true;
+      if(opts[i].ok)b.classList.add('right');else if(b===btn)b.classList.add('wrong');else b.classList.add('dim');
+    });
+    results.push({q:q,ok:o.ok,chosen:o.t});
+    drawBar($('bar'),order,function(i){return i<results.length?(results[i].ok?'ok':'bad'):'';});
+    var fb=$('fb');fb.style.setProperty('--sc',s.c);fb.className='fb '+(o.ok?'ok':'bad');
+    fb.innerHTML='<strong></strong><p class="ans hidden"></p><p class="why"></p><div class="refbox hidden"></div>';
+    fb.querySelector('strong').textContent=o.ok?'Correct.':'Not quite.';
+    var ans=fb.querySelector('.ans');
+    if(!o.ok){ans.classList.remove('hidden');ans.innerHTML='<b>The correct answer:</b> <span></span>';ans.lastChild.textContent=q.a;}
+    fb.querySelector('.why').textContent=q.e;
+    var rb=fb.querySelector('.refbox');rb.classList.remove('hidden');
+    if(!o.ok){
+      rb.innerHTML='<p class="src"></p><span class="refchip"></span>';
+      rb.querySelector('.src').textContent='Review this topic: '+s.name+', '+refText(q)+'.';
+      rb.querySelector('.refchip').textContent='Reference page '+q.ref.page;rb.querySelector('.refchip').style.setProperty('--sc',s.c);
+    } else {
+      rb.innerHTML='<p class="src"></p>';rb.querySelector('.src').textContent='Reference: page '+q.ref.page+' ('+q.ref.slide+')';
+    }
+    $('nextBtn').textContent=(idx===order.length-1)?'See my score':'Next question';
+    $('nextWrap').classList.remove('hidden');
+    $('nextBtn').focus({preventScroll:true});
+    fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  function finish(){
+    var total=results.length,score=results.filter(function(r){return r.ok;}).length;
+    $('resTitle').textContent=mode==='all'?'Your score':sess(mode).name+' score';
+    $('who').textContent=pname+', '+new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+    $('scoreN').textContent=score;$('scoreOf').textContent='out of '+total;
+    var pct=score/total;
+    $('verdict').textContent=pct>=0.9?'Excellent. You can follow the whole supply chain from demand to stock.':pct>=0.7?'Solid. Review the topics below to close the gaps.':pct>=0.5?'A good start. Use the review list to revisit the topics you missed.':'Worth another pass through the reference. Start with the session that scored lowest.';
+    drawBar($('resBar'),order,function(i){return results[i].ok?'ok':'bad';});
+    var box=$('sessions');box.innerHTML='';
+    var worst=null,wr=2,parts=[];
+    SESS.forEach(function(s){
+      var rs=results.filter(function(r){return r.q.s===s.id;});if(!rs.length)return;
+      var got=rs.filter(function(r){return r.ok;}).length;
+      var row=document.createElement('div');row.className='srow';row.style.setProperty('--sc',s.c);
+      var m='';rs.forEach(function(r){m+='<i class="'+(r.ok?'f':'')+'"></i>';});
+      row.innerHTML='<span></span><span class="meter">'+m+'</span><span class="v">'+got+'/'+rs.length+'</span>';
+      row.firstChild.textContent=s.name+': '+s.topic;
+      box.appendChild(row);
+      parts.push('S'+s.id+' '+got+'/'+rs.length);
+      var r=got/rs.length;if(r<1&&r<wr){wr=r;worst=s;}
+    });
+    var rv=$('revisit');
+    if(worst){
+      var firstMiss=results.filter(function(r){return !r.ok&&r.q.s===worst.id;})[0];
+      rv.style.setProperty('--sc',worst.c);rv.classList.remove('hidden');
+      rv.innerHTML='<b></b><p></p>';rv.firstChild.textContent='Review first: '+worst.name+', '+worst.topic;
+      rv.lastChild.textContent='Start at reference page '+firstMiss.q.ref.page+' ('+firstMiss.q.ref.slide+'), then read the rest of that session.';
+    } else rv.classList.add('hidden');
+    var ta=$('copyTa');ta.value='SAP workshop quiz: '+pname+' scored '+score+'/'+total+' ('+parts.join(', ')+')';
+    $('copyBtn').textContent='Copy result';
+    var rev=$('review');rev.innerHTML='';
+    var missed=results.filter(function(r){return !r.ok;});
+    var h=document.createElement('h2');h.textContent=missed.length?'What to review':'No misses';rev.appendChild(h);
+    if(!missed.length){var p=document.createElement('p');p.style.marginTop='10px';p.textContent='Every answer was right. Try another session later to check it sticks.';rev.appendChild(p);}
+    missed.forEach(function(r){
+      var s=sess(r.q.s);
+      var d=document.createElement('div');d.className='rev-item';
+      d.innerHTML='<h3></h3><p class="a"><b class="yours">Your answer:</b> <span class="y"></span></p><p class="a"><b class="theirs">Correct answer:</b> <span class="c"></span></p><p class="a e"></p><p class="refline"><span class="refchip"></span></p><p class="a src" style="color:var(--muted)"></p>';
+      d.querySelector('h3').textContent=r.q.q;
+      d.querySelector('.y').textContent=r.chosen;d.querySelector('.c').textContent=r.q.a;d.querySelector('.e').textContent=r.q.e;
+      var chip=d.querySelector('.refchip');chip.textContent='Reference page '+r.q.ref.page;chip.style.setProperty('--sc',s.c);
+      d.querySelector('.src').textContent=s.name+', '+refText(r.q);
+      rev.appendChild(d);
+    });
+    show('result');
+  }
+  $('nextBtn').addEventListener('click',function(){if(idx===order.length-1){finish();}else{idx++;render();window.scrollTo(0,0);}});
+  $('retryBtn').addEventListener('click',function(){begin(mode);});
+  $('homeBtn').addEventListener('click',function(){show('start');});
+  $('copyBtn').addEventListener('click',function(){
+    var ta=$('copyTa'),btn=$('copyBtn');
+    function fallback(){
+      ta.focus();ta.select();
+      try{
+        var copied=document.execCommand('copy');
+        btn.textContent=copied?'Copied':'Select the text and copy it';
+      }catch(e){
+        btn.textContent='Select the text and copy it';
+      }
+    }
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(ta.value).then(function(){
+        btn.textContent='Copied';
+      }).catch(fallback);
+    }else{
+      fallback();
+    }
+  });
+  document.addEventListener('keydown',function(e){
+    if($('quiz').classList.contains('hidden'))return;
+    var n=parseInt(e.key,10);if(n>=1&&n<=4){var b=$('opts').querySelectorAll('.opt')[n-1];if(b&&!b.disabled)b.click();}
+  });
+})();
+</script>
+</body>
+</html>
